@@ -1,0 +1,123 @@
+/* store.component.scss */
+.container-fluid {
+  padding-right: 100px;
+  padding-left: 100px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.filters {
+  //margin-left: 7rem;
+  padding: 0 2rem; // Add padding on both sides
+  margin-left: 2rem; // Increase left margin to push away from the edge
+  width: 100%; // Ensure the filter container takes the full width of its parent
+  padding: 0 1rem;
+
+  h3 {
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .list-group-item {
+    cursor: pointer !important; // Add !important here
+    border: none;
+    border-left: 4px solid transparent;
+    border-radius: 0;
+    padding: 10px 20px;
+
+    &:hover {
+      background-color: #f8f9fa;
+    }
+
+    &.active {
+      border-color: #10278f;
+      background-color: #2146cb;
+    }
+
+    &.active:hover {
+      background-color: #c4e2ce;
+    }
+
+    .list-group-item-text {
+      color: #333;
+    }
+  }
+
+  .custom-select {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 10px;
+
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #fff;
+    }
+  }
+
+  .mt-3 {
+    margin-top: 20px;
+  }
+
+  .btn-success {
+    padding: 10px 20px;
+  }
+}
+
+/* Styles for product cards */
+.col-md-4 {
+  // Base styles for padding and margin
+  padding: 1rem;
+  margin-bottom: 1rem; // margin between rows
+  // Border, rounded corners, and shadow for depth
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  // Ensure the content is centered and responsive
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  // Transition for hover effects
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .col-md-4 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .col-md-4 {
+    margin: 1rem 0;
+  }
+}
+
+/* Ensure product items stretch and use available space */
+app-product-items {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

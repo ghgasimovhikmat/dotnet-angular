@@ -1,0 +1,101 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h1>Welcome to {{ title }}</h1>
+      <p>Discover the latest products and enjoy a seamless shopping experience.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3"> <!-- Order the column last for larger screens -->
+      <h3 class="text-primary ml-3 ml-md-4 mb-4">Sort</h3>
+      <div class="custom-select mb-4">
+        <select [(ngModel)]="params.selectedSort" (change)="onSortChange()">
+          <option value="NameAsc">Name Ascending</option>
+          <option value="NameDesc">Name Descending</option>
+          <option value="PriceAsc">Price Ascending</option>
+          <option value="PriceDesc">Price Descending</option>
+        </select>
+      </div>
+      <h3 class="text-primary ml-3 ml-md-4 mb-4">Brands</h3>
+      <!-- Brand Filters -->
+      <ul class="list-group my-3">
+        <li
+          class="list-group-item"
+          *ngFor="let brand of brands; let i=index"
+          [class.active]="brand.id === params.productBrandId"
+          [value]="brand.id"
+          (click)="selectBrand(brand.id)"
+          style="width: 400px;"
+        >
+          {{ brand.name }}
+        </li>
+      </ul>
+      <h3 class="text-primary ml-3 ml-md-4 mb-4">Types</h3>
+      <ul class="list-group my-3">
+        <li
+          class="list-group-item"
+          *ngFor="let type of types; let i=index"
+          [class.active]="type.id === params.productTypeId"
+          [value]="type.id"
+          (click)="selectType(type.id)"
+          style="width: 400px;"
+
+        >
+          {{ type.name }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-9">
+      <div class="d-flex justify-content-center mt-3"  *ngIf="totalcount > 0">
+        <app-pagination
+        [totalcount]="totalcount"
+        [pageSize]="params.pageSize"
+        [pageNumber]="params.pageNumber"
+        (pageChanged)="onPageChanged($event)"
+      ></app-pagination>
+
+    </div>
+
+      <div>
+
+          <div class="d-flex justify-content-between align-items-center pb-2">
+            <div class="d-flex justify-content-center align-items-center">
+              <app-pagination-header [totalcount]="totalcount"
+              [pageNumber]="params.pageNumber" [pageSize]="params.pageSize">
+             </app-pagination-header>
+            </div>
+
+      </div>
+
+      <div class="d-flex justify-content-end align-items-center mb-3">
+        <div class="d-flex ml-auto">
+          <input type="text" class="form-control" placeholder="Search" [(ngModel)]="params.search">
+          <button class="btn btn-outline-success mx-2 px-2" (click)="searchProduct()">Search</button>
+          <button class="btn btn-outline-primary" (click)="resetFilter()">Reset</button>
+        </div>
+
+      </div>
+      <div class="row product-row">
+        <div class="col-md-4" *ngFor="let product of products">
+          <app-product-items [product]="product"></app-product-items>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center mt-3"  *ngIf="totalcount > 0">
+    <app-pagination
+    [totalcount]="totalcount"
+    [pageSize]="params.pageSize"
+    [pageNumber]="params.pageNumber"
+    (pageChanged)="onPageChanged($event)"
+  ></app-pagination>
+</div>
+
+</div>
+
+
+<!-- ... (previous markup) ... -->
+
+
+

@@ -1,0 +1,35 @@
+<div class="container mt-5" *ngIf="product">
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="product-image-container">
+          <img [src]="'assets/images/products/' + extractImageName()" [alt]="product.name" class="img-fluid product-image" />
+        </div>
+
+
+      </div>
+      <div class="col-md-6">
+        <h2>{{ product.name }}</h2>
+        <p class="text-muted">{{ product.description }}</p>
+        <div class="mb-3">
+          <strong>Price:</strong>
+          <span> {{ product.price | currency:'INR' }}</span>
+        </div>
+        <div class="mb-3">
+          <strong>Brand: {{ product.productBrand }}</strong>
+        </div>
+        <div class="mb-3">
+          <strong>Type: {{ product.productType }}</strong>
+        </div>
+        <div class="quantity-controls mb-3">
+          <button class="btn btn-primary" (click)="decrement()"><i class="fa fa-minus"></i></button>
+          <span class="quantity">{{ quantity }}</span>
+          <button class="btn btn-primary" (click)="increment()"><i class="fa fa-plus"></i></button>
+        </div>
+        <button class="btn btn-primary">Add to Cart</button>
+        <button class="btn btn-success go-back-btn" routerLink="/">Go Back to Store</button>
+
+      </div>
+    </div>
+
+</div>

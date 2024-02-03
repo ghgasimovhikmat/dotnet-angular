@@ -1,0 +1,31 @@
+/* Customize your navbar styles here */
+.navbar {
+  background-color: #fff; /* Background color */
+  border-bottom: 1px solid #ddd; /* Bottom border */
+}
+
+.navbar-brand {
+  font-size: 1.5rem; /* Logo font size */
+  font-weight: bold; /* Logo font weight */
+}
+
+.navbar-toggler-icon {
+  /* Customize the toggler icon if needed */
+}
+
+.navbar-nav .nav-item {
+  margin-right: 15px; /* Adjust the right margin between navbar items */
+}
+
+.navbar-nav .nav-link {
+  color: #333; /* Navbar item text color */
+  font-weight: bold; /* Navbar item text font weight */
+  transition: color 0.3s; /* Transition effect on hover */
+}
+
+
+/* Add active link styles */
+.navbar-nav .nav-item .nav-link.active {
+  color: #007bff; /* Active link text color */
+  font-weight: bold; /* Active link font weight */
+}

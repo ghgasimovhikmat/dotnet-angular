@@ -1,0 +1,90 @@
+/* product-items.component.scss */
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s; /* Add transition for smooth scaling */
+  border: none; /* Remove the border from the card */
+  margin: 20px; /* Add margin around the card */
+  display: flex;
+  flex-direction: column; /* Stack the card content vertically */
+  justify-content: space-between; /* Distribute space around items */
+  height: 100%; /* Make sure the card stretches to full container height */
+  cursor: pointer; /* Add pointer when hover over the card */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Scale the card on hover */
+}
+
+.card-img-top {
+  height: auto; /* Maintain aspect ratio */
+  max-height: 200px; /* Set a maximum height for the product image */
+  object-fit: scale-down; /* Scale down the image if it's too big, without cropping it */
+  width: 100%; /* Ensure the image takes up the full width of the card */
+}
+
+.card-body {
+  padding: 1.25rem; /* Adjust padding to create space inside the card */
+  flex-grow: 1; /* Allow the card body to fill the space */
+}
+
+.card-title {
+  font-weight: bold;
+  white-space: normal; /* Allow the text to wrap */
+  overflow: visible; /* Show the overflow */
+  text-overflow: clip; /* Clip the text instead of ellipsis */
+  line-height: 1.2; /* Adjust line height for better readability */
+  min-height: 3em; /* Set a minimum height to accommodate two lines of text */
+}
+
+.card-text {
+  font-size: 16px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; /* This ensures even spacing around the items */
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.col-md-12 {
+  margin-bottom: 15px; /* Adjust this value as needed for vertical spacing */
+}
+
+
+.btn-success:last-child {
+  margin-right: 0; /* Ensure the last button doesn't have extra margin */
+}
+
+.btn i {
+  margin-right: 5px; /* Add spacing between icon and text */
+  font-size: 18px; /* Increase the icon size */
+  line-height: 1; /* Adjust line-height to align icons properly */
+}
+
+.btn {
+  padding: 0.5rem 1rem; /* Adjust padding for better button spacing */
+}
+
+.btn-primary,
+.btn-success {
+  margin-right: 5px; /* Adjust margin between buttons */
+  margin: 0 0.25rem;/* Reduce side margins to bring buttons closer */
+}
+
+
+
+/* Additional styles for responsive layout */
+@media (max-width: 768px) {
+  .col-md-4 {
+    flex: 0 0 calc(50% - 40px); /* Make cards take up half the width on smaller screens */
+    margin: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .col-md-4 {
+    flex: 0 0 calc(100% - 40px); /* Make cards take full width on extra small screens */
+    margin: 20px;
+  }
+}
