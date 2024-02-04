@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { StoreComponent } from './store/store.component';
-import { ProductDetailsComponent } from './store/product-details/product-details.component';
+import { ServerErrorComponent } from './core/server-error/server-error.component';
+import { NotFoundComponent } from './core/not-found/not-found.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
-  {path:'store', component:StoreComponent},
-  {path:'store/:id', component:ProductDetailsComponent},
+
+  {path:'store', loadChildren:()=>import('./store/store.module').then(m=>m.StoreModule)},
+  {path:'not-found', component:NotFoundComponent},
+  {path:'server-error', component:ServerErrorComponent},
   {path:'**', redirectTo:'',pathMatch:'full'},
+
 ];
 
 @NgModule({

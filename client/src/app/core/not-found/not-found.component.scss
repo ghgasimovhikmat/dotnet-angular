@@ -1,0 +1,29 @@
+/* Add your custom styles for not-found page here */
+
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #ffffff; /* Setting the background color to white */
+}
+
+.not-found-title {
+  font-size: 36px;
+  color: #ff6347; /* Assigning a color to the title */
+  margin-bottom: 20px;
+}
+
+.not-found-message {
+  font-size: 24px;
+  color: #333; /* Dark gray color for the message */
+  text-align: center;
+}
+
+.not-found-image {
+  max-width: 50%; /* Reducing width to make the image smaller */
+  max-height: 400px; /* Adding a max height to control the size of the image */
+  object-fit: contain; /* Ensures the image scales within the max-width and max-height */
+  margin-top: 20px;
+}

@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { PaginationComponent, PaginationModule } from 'ngx-bootstrap/pagination';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { RouterModule } from '@angular/router';
+import { StoreRoutingModule } from './store-routing.module';
 
 
 @NgModule({
@@ -20,13 +21,13 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     FormsModule,
     SharedModule,
-    RouterModule
-
+    RouterModule,
+    StoreRoutingModule
   ],
-  exports: [
+  /*exports: [
     StoreComponent,
     SharedModule,
     PaginationComponent
-  ]
+  ]*/
 })
 export class StoreModule { }

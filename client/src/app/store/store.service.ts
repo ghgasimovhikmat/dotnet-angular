@@ -23,7 +23,7 @@ export class StoreService {
   getProducts(params: StoreParams): Observable<Pagination<Product>> {
     let httpParams = new HttpParams()
       .set('sort', params.selectedSort)
-     .set('skip', params.skip.toString())
+      .set('skip', params.skip.toString())
       .set('take', params.take.toString());
 
     // Add brand and type parameters if they are provided  && productBrandId && productTypeId
@@ -49,7 +49,7 @@ export class StoreService {
   getProduct(id:number){
 
     const url = `${this.baseUrl}/${id}`;
-   
+
     return this.http.get<Product>(url);
 
   }

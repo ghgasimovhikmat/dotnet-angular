@@ -6,6 +6,7 @@ import { Product } from '../shared/models/product';
 import { ProductBrand } from '../shared/models/ProductBrand';
 import {  ProductType } from "../shared/models/ProductType";
 import { StoreParams } from '../shared/models/StoreParams';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-store',
@@ -20,7 +21,7 @@ export class StoreComponent implements OnInit {
   params:StoreParams=new StoreParams();
   totalcount=0;
 
-  constructor(private storeService: StoreService, private changeDetectorRef: ChangeDetectorRef) {}
+  constructor(private storeService: StoreService, private changeDetectorRef: ChangeDetectorRef,private toastr: ToastrService) {}
 
   ngOnInit(){
 
@@ -74,6 +75,8 @@ fetchProducts() {
       this.params.pageNumber=response.pageIndex;
       this.params.pageSize=response.pageSize;
       this.totalcount=response.totalItems;
+      // Show the toastr success notification with the correct position class
+      setTimeout(() => this.toastr.success('Products fetched'), 0);
 
       //console.log( response.data);
 
