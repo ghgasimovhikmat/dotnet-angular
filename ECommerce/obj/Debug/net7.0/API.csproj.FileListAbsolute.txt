@@ -98,3 +98,5 @@ C:\Users\ghgas\source\repos\ECommerce\bin\Debug\net7.0\Microsoft.EntityFramework
 C:\Users\ghgas\source\repos\ECommerce\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\Users\ghgas\source\repos\ECommerce\bin\Debug\net7.0\AutoMapper.dll
 C:\Users\ghgas\source\repos\ECommerce\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\ghgas\source\repos\ECommerce\bin\Debug\net7.0\Pipelines.Sockets.Unofficial.dll
+C:\Users\ghgas\source\repos\ECommerce\bin\Debug\net7.0\StackExchange.Redis.dll
