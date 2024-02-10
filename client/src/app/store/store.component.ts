@@ -24,11 +24,9 @@ export class StoreComponent implements OnInit {
   constructor(private storeService: StoreService, private changeDetectorRef: ChangeDetectorRef,private toastr: ToastrService) {}
 
   ngOnInit(){
-
-    this.fetchProducts();
     this.getBrands();
     this.getTypes();
-
+    this.fetchProducts();
   }
 
 
@@ -75,14 +73,14 @@ fetchProducts() {
       this.params.pageNumber=response.pageIndex;
       this.params.pageSize=response.pageSize;
       this.totalcount=response.totalItems;
-      // Show the toastr success notification with the correct position class
-      setTimeout(() => this.toastr.success('Products fetched'), 0);
-
+      this.toastr.success('Products fetched');
       //console.log( response.data);
-
     },
     error: (error) => console.error('Error fetching products:', error)
   });
+
+  // Show the toastr success notification with the correct position class
+
 }
 
 searchProduct(){

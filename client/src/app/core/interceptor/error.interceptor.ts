@@ -23,16 +23,15 @@ export class ErrorInterceptor implements HttpInterceptor {
       catchError((error) => {
         if (error.status === 404) {
           // Handle 404 error here and show a toastr message
-          this.router.navigateByUrl('/not-found');
+          this.router.navigate(['/not-found']);
           this.toastr.error('Page not found', 'Error 404');
 
         } else if (error.status === 500) {
           // Handle 500 error here and show a toastr message
-          this.router.navigateByUrl('/server-error');
+          this.router.navigate(['/server-error']);
           this.toastr.error('Server error', 'Error 500');
-
         }
-        
+
         // Rethrow the error for further handling, if needed
         throw error;
       })

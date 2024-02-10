@@ -1,0 +1,23 @@
+<ng-container *ngIf="(breadCrumbService.breadcrumbs$ | async) as breadcrumbs">
+  <section class="breadcrumb-container" *ngIf="breadcrumbs[breadcrumbs.length - 1].label !== 'Home'">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <!-- Header Title (col-9) -->
+        <div class="col-9">
+          <h5 class="header-title" *ngIf="breadcrumbs[breadcrumbs.length - 1].label !== 'Store'">
+            {{ breadcrumbs[breadcrumbs.length - 1].label }}
+          </h5>
+        </div>
+
+        <!-- Breadcrumb Navigation (col-3) -->
+        <div class="col-3 text-end">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <xng-breadcrumb></xng-breadcrumb>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-container>

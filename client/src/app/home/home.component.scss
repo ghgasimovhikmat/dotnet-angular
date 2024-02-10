@@ -1,0 +1,31 @@
+// Make the carousel full-width
+carousel {
+  width: 100%;
+  .carousel-inner,
+  .carousel-item,
+  .carousel-item img {
+    width: 100%;
+    height: auto; // Maintain the aspect ratio of images
+  }
+
+  .carousel-item img {
+    object-fit: cover; // Cover the slide area without stretching the image
+    object-position: center; // Center the image within the slide
+  }
+}
+
+// Remove left and right padding (if any) from the container inside the carousel
+.carousel-inner {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+// Assuming you want the featurette images to be full width on smaller screens
+@media (max-width: 768px) {
+  .featurette img {
+    width: 100%; // Full width on smaller screens
+    height: auto; // Adjust height automatically
+  }
+}
+
+// Rest of your styles for the marketing section

@@ -1,0 +1,61 @@
+.breadcrumb-container {
+  background-color: whitesmoke;
+  padding: 6rem 1rem;
+  margin-bottom: 3rem; // Expanded bottom margin for more space below the breadcrumb
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Optional: adds a subtle shadow for depth
+  border-radius: 0.375rem; // Optional: adds rounded corners for a modern look
+
+  .row {
+    align-items: center; // Center align items vertically
+
+    .header-title {
+      margin: 0;
+      color: black;
+      font-size: 3rem;
+      padding-left: 15rem; // Adjusted for a normal shift to the right
+      padding-top: 2rem; // Added padding-top for spacing
+    }
+
+    .breadcrumb {
+      background-color: transparent;
+      padding: 0;
+      font-size: 1.2rem;
+      margin-bottom: 0;
+      margin-top: 0.5rem; // Adjusted top margin for vertical alignment
+      float: right; // Ensures the breadcrumb aligns to the right
+
+      .breadcrumb-item {
+        a {
+          color: #007bff;
+          &:hover {
+            color: #0056b3;
+            text-decoration: underline;
+          }
+        }
+
+        + .breadcrumb-item::before {
+          content: '\f105'; // FontAwesome arrow
+          font-family: 'FontAwesome';
+          padding: 0 5px;
+          color: #6c757d;
+        }
+      }
+
+      .breadcrumb-item.active {
+        color: #6c757d;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+// Ensure container-fluid does not have excessive padding that might affect the layout
+.container-fluid {
+  padding-right: 15px;
+  padding-left: 15px;
+  @media (min-width: 768px) {
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+  padding-bottom: 25px;
+}
