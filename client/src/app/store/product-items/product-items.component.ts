@@ -1,6 +1,7 @@
 // product-items.component.ts
 import { Component, Input } from '@angular/core';
 import { Product } from '../../shared/models/product';
+import { BasketService } from '../../basket/basket.service';
 
 
 @Component({
@@ -10,6 +11,8 @@ import { Product } from '../../shared/models/product';
 })
 export class ProductItemsComponent {
   @Input() product: Product | undefined;
+
+  constructor(private basketService: BasketService){}
 
   extractImageName(): string | null {
     if (this.product && this.product.pictureUrl) {
@@ -21,5 +24,9 @@ export class ProductItemsComponent {
 
     }
     return null;
+  }
+
+  addItemToBasket(){
+    this.product&&this.basketService.addItemToBasket(this.product);
   }
 }
