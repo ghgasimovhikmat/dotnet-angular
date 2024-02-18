@@ -9,6 +9,8 @@ export interface Product {
   description: string;
   price: number;
   pictureUrl: string;
-  productBrand:ProductBrand;
-  productType: ProductType;
+  productBrand:string;
+  productType:string;
+  //productBrand:ProductBrand;
+  //productType: ProductType;
 }

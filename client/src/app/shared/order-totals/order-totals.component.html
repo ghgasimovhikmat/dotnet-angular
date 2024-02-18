@@ -1,0 +1,26 @@
+<div *ngIf="(basketService.basketTotalBasket$ | async) as totals" class="order-total mt-4">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      Order Summary
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">Subtotal</th>
+            <td class="text-end">{{ totals.subtotal | currency }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Shipping</th>
+            <td class="text-end">{{ totals.shipping | currency }}</td>
+          </tr>
+          <tr class="fw-bold">
+            <th scope="row">Total</th>
+            <td class="text-end">{{ totals.total | currency }}</td>
+          </tr>
+        </tbody>
+      </table>
+     
+    </div>
+  </div>
+</div>

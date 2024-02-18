@@ -27,11 +27,19 @@
             <i class="fa-solid fa-store">Store</i>
           </a>
         </li>
-       <li class="nav-item">
+       <!--<li class="nav-item">
           <a class="nav-link" routerLink="/basket" routerLinkActive="active" >
             <i class="fa fa-shopping-cart"></i> Cart
           </a>
+        </li>-->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/basket" routerLinkActive="active">
+            <i class="fa fa-shopping-cart"> Cart </i>
+            <span class="cart-badge" *ngIf="(basketService.basketSubject$ | async) as basket">  {{   basket.items.length }}</span>
+          </a>
         </li>
+
+
         <li class="nav-item">
           <a class="nav-link" href="#" routerLinkActive="active" >
             <i class="fa fa-sign-out-alt"></i> Logout

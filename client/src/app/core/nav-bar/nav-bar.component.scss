@@ -9,10 +9,23 @@
   font-weight: bold; /* Logo font weight */
 }
 
-.navbar-toggler-icon {
-  /* Customize the toggler icon if needed */
-}
 
+
+/* Style for the cart count badge */
+/* Style for the cart count badge */
+.cart-badge {
+  background-color: rgb(210, 74, 74);
+  color: white;
+  border-radius: 50%;
+  padding: 4px 8px;
+  font-size: 12px;
+
+  position: absolute; /* Use absolute positioning within the relative parent */
+  top: 8px;/* Adjust this value to move the badge up */
+  right:105px; /* Adjust this value as needed to align it above the cart icon */
+  transform: translateX(50%); /* Use transform to precisely position the badge */
+  z-index: 1; /* Ensure the badge is displayed above other content */
+}
 .navbar-nav .nav-item {
   margin-right: 15px; /* Adjust the right margin between navbar items */
 }

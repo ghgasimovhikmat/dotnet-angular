@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from './shared/models/product';
 import { Pagination } from './shared/models/pagination';
-
+import { BasketService } from './basket/basket.service';
+import { Basket } from './shared/models/basket';
+import { isPlatformBrowser } from '@angular/common';
 // Define an interface for a product
 
 
@@ -11,28 +13,29 @@ import { Pagination } from './shared/models/pagination';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-
-
 export class AppComponent implements OnInit {
   title = 'Sport Center';
-  /*products: Product[] = [];
-  pagination: Pagination |undefined;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private basketService: BasketService,
+    @Inject(PLATFORM_ID) private platformId: Object  // Inject PLATFORM_ID
+  ) {}
 
   ngOnInit(): void {
-    this.http.get<Pagination>('http://localhost:5233/api/Products?sort=NameAsc&skip=0&take=10')
-      .subscribe({
-        next: (data) => {
-          this.pagination=data;
-        // console.log(this.pagination);
-          this.products = data.data;
-         // console.log(data.data);
-        },
-        error: (error) => {
-          console.error('Error fetching data', error);
-        }
-      });
-  }*/
-  ngOnInit(): void {}
+    // Check if running in the browser before accessing localStorage
+    if (isPlatformBrowser(this.platformId)) {
+      const basketId = localStorage.getItem('basket_id');
+      if (basketId) {
+        this.basketService.getBasket(basketId).subscribe({
+          next: basket => {
+            console.log('Basket fetched:', basket);
+          },
+          error: error => {
+            console.error('Error fetching basket:', error);
+          }
+        });
+      }
+    }
+  }
 }
+

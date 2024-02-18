@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../shared/models/product';
 import { error } from 'console';
 import {  BreadcrumbService } from 'xng-breadcrumb';
+import { BasketService } from '../../basket/basket.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-details',
@@ -20,8 +22,9 @@ export class ProductDetailsComponent  implements OnInit {
     this.loadProduct();
 
   }
-  constructor(private storeService: StoreService, private activatedRoute: ActivatedRoute,
-    private router: Router,private  breadcrumbService:BreadcrumbService) {}
+  constructor(public basketService: BasketService,private storeService: StoreService, private activatedRoute: ActivatedRoute,
+    private router: Router,private  breadcrumbService:BreadcrumbService,
+    private toastr:ToastrService) {}
 
   loadProduct(){
     const id=this.activatedRoute.snapshot.paramMap.get('id');
@@ -56,9 +59,11 @@ export class ProductDetailsComponent  implements OnInit {
 
 
     addToCart() {
-    throw new Error('Method not implemented.');
+     if(this.product){
+      this.basketService.addItemToBasket(this.product,this.quantity);
+      this.toastr.success("Item added to cart")
+     }
     }
-
     decrement() {
       if (this.quantity > 1) {
         this.quantity--;
