@@ -100,3 +100,12 @@ C:\Users\ghgas\source\repos\ECommerce\bin\Debug\net7.0\AutoMapper.dll
 C:\Users\ghgas\source\repos\ECommerce\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\ghgas\source\repos\ECommerce\bin\Debug\net7.0\Pipelines.Sockets.Unofficial.dll
 C:\Users\ghgas\source\repos\ECommerce\bin\Debug\net7.0\StackExchange.Redis.dll
+C:\Users\ghgas\source\repos\ECommerce\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\ghgas\source\repos\ECommerce\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\ghgas\source\repos\ECommerce\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\ghgas\source\repos\ECommerce\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\ghgas\source\repos\ECommerce\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\ghgas\source\repos\ECommerce\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\ghgas\source\repos\ECommerce\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\ghgas\source\repos\ECommerce\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\ghgas\source\repos\ECommerce\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
