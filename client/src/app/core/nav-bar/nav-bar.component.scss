@@ -21,12 +21,13 @@
   font-size: 12px;
 
   position: absolute; /* Use absolute positioning within the relative parent */
-  top: 8px;/* Adjust this value to move the badge up */
-  right:105px; /* Adjust this value as needed to align it above the cart icon */
-  transform: translateX(50%); /* Use transform to precisely position the badge */
+  top: -8px;/* Adjust this value to move the badge up */
+  right:0; /* Adjust this value as needed to align it above the cart icon */
+  transform: translateX(50 ,-50%); /* Use transform to precisely position the badge */
   z-index: 1; /* Ensure the badge is displayed above other content */
 }
 .navbar-nav .nav-item {
+  position: relative; /* Add position relative here */
   margin-right: 15px; /* Adjust the right margin between navbar items */
 }
 

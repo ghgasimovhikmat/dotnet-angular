@@ -5,6 +5,7 @@ import { Pagination } from './shared/models/pagination';
 import { BasketService } from './basket/basket.service';
 import { Basket } from './shared/models/basket';
 import { isPlatformBrowser } from '@angular/common';
+import { AccountService } from './account/account.service';
 // Define an interface for a product
 
 
@@ -19,10 +20,15 @@ export class AppComponent implements OnInit {
   constructor(
     private basketService: BasketService,
     @Inject(PLATFORM_ID) private platformId: Object  // Inject PLATFORM_ID
-  ) {}
+    , private accountService: AccountService) { }
 
   ngOnInit(): void {
-    // Check if running in the browser before accessing localStorage
+
+    this.loadBasket();
+    this.loadUser();
+
+  }
+  loadBasket() {
     if (isPlatformBrowser(this.platformId)) {
       const basketId = localStorage.getItem('basket_id');
       if (basketId) {
@@ -35,6 +41,20 @@ export class AppComponent implements OnInit {
           }
         });
       }
+    }
+  }
+
+  loadUser() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.accountService.loadUser(token).subscribe({
+        next: user => {
+          console.log('User loaded:', user);
+        },
+        error: error => {
+          console.error('Error loading user:', error);
+        }
+      });
     }
   }
 }

@@ -1,7 +1,7 @@
 .breadcrumb-container {
   background-color: whitesmoke;
-  padding: 6rem 1rem;
-  margin-bottom: 3rem; // Expanded bottom margin for more space below the breadcrumb
+  padding: 3rem 1rem;
+  margin-bottom: 1rem; // Expanded bottom margin for more space below the breadcrumb
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Optional: adds a subtle shadow for depth
   border-radius: 0.375rem; // Optional: adds rounded corners for a modern look
 
@@ -48,6 +48,7 @@
     }
   }
 }
+// Adjust padding and margin for the section containing app-section-header
 
 // Ensure container-fluid does not have excessive padding that might affect the layout
 .container-fluid {

@@ -12,6 +12,7 @@ export class BasketService {
   private basketSubject: BehaviorSubject<Basket | null> = new BehaviorSubject<Basket | null>(null);
   basketSubject$ = this.basketSubject.asObservable();
   private basketTotalBasket = new BehaviorSubject<BasketTotal | null>(null);
+
   basketTotalBasket$ = this.basketTotalBasket.asObservable();
 
   private readonly baseUrl = 'http://localhost:5233/api/Basket/';
