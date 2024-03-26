@@ -46,13 +46,13 @@ namespace API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginDto model)
+        public async Task<ActionResult<UserDto>> Login(LoginDto model)
         {
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
             if (result.Succeeded)
             {
                 var user = await _userManager.FindByEmailAsync(model.Email);
-
+                // Generate token
                 var token = _tokenGenerationService.GenerateToken(new Claim[] {
                     new Claim(ClaimTypes.NameIdentifier, user.Id),
                       new Claim(ClaimTypes.Name,user.DisplayName),
@@ -60,15 +60,48 @@ namespace API.Controllers
                     // Add additional claims if needed
                 });
 
-                // Generate token
-                return Ok(
-                    new {
-                        message = "User logged in successfully.", 
-                        Token=token 
-                    });
+              
+                return new UserDto
+                {
+                    Email = user.Email,
+                    DisplayName = user.DisplayName,
+                    Token = token
+                };
             }
-            return BadRequest("Invalid login attempt.");
+            if (result.RequiresTwoFactor)
+            {
+                return BadRequest(new { Message = "Two-factor authentication required" });
+            }
+            return BadRequest(new { Message = "Invalid login attempt." });
+         
         }
+        [HttpGet("loaduser")]
+        [Authorize]
+        public async Task<IActionResult> LoadUser()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound("User not found.");
+            }
+
+            // Map ApplicationUser to UserDto
+            var userDto = new UserDto
+            {
+                Email = user.Email,
+                DisplayName = user.DisplayName,
+                Token = _tokenGenerationService.GenerateToken(new Claim[] {
+            new Claim(ClaimTypes.NameIdentifier, user.Id),
+            new Claim(ClaimTypes.Name,user.DisplayName),
+            new Claim(ClaimTypes.Email,user.Email)
+            // Add additional claims if needed
+        })
+            };
+
+            return Ok(userDto);
+        }
+
 
         [HttpPost("logout")]
         [Authorize]

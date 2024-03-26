@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, of, switchMap, throwError } from 'rxjs';
 import { User } from '../shared/models/user';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -19,7 +19,7 @@ export class AccountService {
   loadUser(token:string){
    let headers=new HttpHeaders();
    headers=headers.set('Authorization', `Bearer ${token}`);
-   return this.http.get<User>(`${this.baseUrl}`, {headers}).pipe(
+   return this.http.get<User>(`${this.baseUrl}loaduser`, {headers}).pipe(
    map((user: User) => {
     if (user?.token) {
       localStorage.setItem('token', user.token);
@@ -39,6 +39,8 @@ export class AccountService {
 )
   }
 
+
+
   login(loginModel: any): Observable<User> {
     return this.http.post<User>(`${this.baseUrl}login`, loginModel).pipe(
       map((response) => {
@@ -47,8 +49,6 @@ export class AccountService {
              email: response.email,
              token:response.token
            };
-
-
           localStorage.setItem('token', response.token);
           this.userSource.next(user);
 
@@ -57,21 +57,48 @@ export class AccountService {
     )
   }
 
-  register(registerModel: any): Observable<User> {
-    return this.http.post<User>(`${this.baseUrl}register`, registerModel).pipe(
-      map((user: User) => {
-        if (user?.token) {
-          localStorage.setItem('token', user.token);
-          this.userSource.next(user);
-        }
-        return user;
-      })
-    )
-  }
+register(registerModel: any): Observable<any> {
+  return this.http.post(`${this.baseUrl}register`, registerModel, {observe: 'response'})
+    .pipe(
+      map(response => response.body),
+      catchError((error: HttpErrorResponse) => {
+        let errorMessage = 'Registration failed due to an unexpected error.';
 
-  checkEmailExists(email: string): Observable<boolean> {
-   return this.http.get<boolean>(`${this.baseUrl}checkemail?email=${email}`)
-  }
+        if (error.status === 400 && error.error) {
+          // Assuming errors are returned in an array
+          try {
+            const errors = error.error.errors || error.error; // Adjust based on your actual error structure
+            if (Array.isArray(errors)) {
+              errorMessage = errors.map(err => err.description).join(' ');
+            } else {
+              // Handle non-array error structure
+              errorMessage = errors.title || JSON.stringify(errors);
+            }
+          } catch {
+            // Fallback for when error parsing fails
+            errorMessage = JSON.stringify(error.error);
+          }
+        }
+
+        return throwError(errorMessage);
+      })
+    );
+}
+
+checkEmail(email: string): Observable<boolean> {
+  const encodedEmail = encodeURIComponent(email);
+  return this.http.get(`${this.baseUrl}checkemail?email=${encodedEmail}`, {observe: 'response'})
+    .pipe(
+      map(response => response.status === 200),
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          return of(false); // Email does not exist, which means it's available for registration
+        }
+        return throwError('An unexpected error occurred while checking the email.');
+      })
+    );
+}
+
 
   logoutUser(): void {
     // Clear token from localStorage
@@ -84,3 +111,5 @@ export class AccountService {
     this.router.navigate(['/login']);
   }
 }
+
+

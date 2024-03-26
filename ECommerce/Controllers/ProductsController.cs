@@ -38,7 +38,7 @@ namespace ECommerce.Controllers
 
         //GET: api/v1/Products
         [HttpGet]
-        [Authorize]
+      //  [Authorize]
         public async Task<ActionResult<Pagination<ProductDTO>>> GetProducts([FromQuery] ProductParams productParams)
         {
             try

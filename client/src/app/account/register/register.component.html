@@ -1,1 +1,69 @@
-<p>register works!</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card my-5">
+        <div class="card-body">
+          <h3 class="card-title text-center">Register</h3>
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+            <!-- Display Name field -->
+            <div class="mb-3">
+              <label for="displayName" class="form-label">Display Name</label>
+              <input formControlName="displayName" type="text" class="form-control" id="displayName"
+                placeholder="Enter Display Name" autocomplete="off">
+              <div *ngIf="registerForm.get('displayName')?.errors?.['required'] && registerForm.get('displayName')?.touched"
+                class="text-danger">
+                Display Name is required
+              </div>
+            </div>
+
+            <!-- Email field -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input formControlName="email" type="email" class="form-control" id="email"
+                placeholder="Enter email" autocomplete="off">
+              <div *ngIf="registerForm.get('email')?.errors?.['required'] && registerForm.get('email')?.touched"
+                class="text-danger">
+                Email is required
+              </div>
+              <div *ngIf="registerForm.get('email')?.errors?.['email'] && registerForm.get('email')?.touched"
+                class="text-danger">
+                Please enter a valid email address
+              </div>
+            </div>
+
+            <!-- Password field -->
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input formControlName="password" type="password" class="form-control" id="password"
+                placeholder="Password" autocomplete="off">
+              <div *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched"
+                class="text-danger">
+                Password is required
+              </div>
+            </div>
+
+            <!-- Confirm Password field -->
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirm Password</label>
+              <input formControlName="confirmPassword" type="password" class="form-control" id="confirmPassword"
+                placeholder="Confirm Password" autocomplete="off">
+              <div *ngIf="registerForm.get('confirmPassword')?.errors?.['required'] && registerForm.get('confirmPassword')?.touched"
+                class="text-danger">
+                Confirm Password is required
+              </div>
+              <div *ngIf="registerForm.hasError('passwordMismatch')"
+                class="text-danger">
+                Passwords do not match
+              </div>
+            </div>
+
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

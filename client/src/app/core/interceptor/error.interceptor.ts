@@ -21,13 +21,14 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError((error) => {
-        if (error.status === 404) {
-          // Handle 404 error here and show a toastr message
+        if (error.status === 400) {
+          // Consider not navigating or showing a Toastr message if you expect the component to handle this
+           this.toastr.error('Bad request', 'Error 400');
+           console.error('Bad request', error.message);
+        } else if (error.status === 404) {
           this.router.navigate(['/not-found']);
           this.toastr.error('Page not found', 'Error 404');
-
         } else if (error.status === 500) {
-          // Handle 500 error here and show a toastr message
           this.router.navigate(['/server-error']);
           this.toastr.error('Server error', 'Error 500');
         }
